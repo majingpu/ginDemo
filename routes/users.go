@@ -5,17 +5,10 @@ import (
 	"net/http"
 )
 
-func addUserRoutes(r *gin.RouterGroup) {
-	users := r.Group("/users")
-	users.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "users")
-	})
+func addUserRoutes(c *gin.Context) {
+	c.String(http.StatusOK, "login ")
+}
 
-	users.GET("/comments", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "users comments")
-	})
-
-	users.GET("/pictures", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "users pictures")
-	})
+func submitRoutes(c *gin.Context) {
+	c.String(http.StatusOK, "submit")
 }
