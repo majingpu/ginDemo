@@ -5,9 +5,6 @@ import (
 	"net/http"
 )
 
-func addPingRoutes(r *gin.RouterGroup) {
-	ping := r.Group("/ping")
-	ping.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "pong")
-	})
+func addPingRoutes(c *gin.Context) {
+	c.String(http.StatusOK, "ping")
 }

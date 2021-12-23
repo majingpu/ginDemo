@@ -6,13 +6,17 @@ var r = gin.Default()
 
 func Run() {
 	r.Run()
-
 }
 
 func getRoutes() {
 	v1 := r.Group("/v1")
-	addUserRoutes(v1)
-	addPingRoutes(v1)
+	{
+		v1.GET("/login", addUserRoutes)
+		v1.GET("/submit", submitRoutes)
+	}
+
 	v2 := r.Group("/v2")
-	addPingRoutes(v2)
+	{
+		v2.GET("/ping", addPingRoutes)
+	}
 }
