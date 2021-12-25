@@ -6,21 +6,24 @@ import (
 )
 
 func main() {
+	// Disable log's color
+	gin.DisableConsoleColor()
+
 	router := gin.Default()
 
 	router.GET("/user/:name", func(context *gin.Context) {
-		name := context.Param("name")  //context.Param
+		name := context.Param("name") //context.Param
 		context.String(http.StatusOK, "return %s", name)
 	})
 
 	router.GET("/user/:name/*action", func(context *gin.Context) {
 		name := context.Param("name")
 		action := context.Param("action")
-		context.String(http.StatusOK, "return name:%s, action:%s", name,action)
+		context.String(http.StatusOK, "return name:%s, action:%s", name, action)
 	})
 
 	router.POST("/user/:name/*action", func(context *gin.Context) {
-		paths := context.FullPath()  // return path full path 返回匹配到的完整路径(string)
+		paths := context.FullPath() // return path full path 返回匹配到的完整路径(string)
 		if paths == "/user/:name/*action" {
 			context.String(http.StatusOK, "%t", paths)
 		}
